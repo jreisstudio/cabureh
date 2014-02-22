@@ -21,6 +21,8 @@ By hour that's all!
  * Added a class to test the Arduino connection.
  
 ## Backlog
+ * To use the method get to get the pin's info
+ * To use the method PUT to change the pins status
  * To create a slave for arduino official  wifi shield 
  * To Create a way to send and get info from analogic pins.
  
