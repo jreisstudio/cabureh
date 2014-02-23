@@ -10,11 +10,14 @@ A way to access the Arduino ports as in an api.
 The Led on pin 13 will blink once, and you'll be ready to use your imagination to call your Arduino ports as in an API!
 
 Example:
- A PUT request to : 
- * http://192.168.1.101/digital/11/1 -> update the pin 11 status to HIGH
- * http://192.168.1.101/digital/11/0 -> update the pin 11 status to LOW
- A GET request to : 
- * http://192.168.1.101/digital/11 -> returns the pin 11 status. 
+  A PUT request to : 
+
+  * http://192.168.1.101/digital/11/1 -> update the pin 11 status to HIGH
+  * http://192.168.1.101/digital/11/0 -> update the pin 11 status to LOW
+
+  A GET request to : 
+
+  * http://192.168.1.101/digital/11 -> returns the pin 11 status. 
 
 By hour that's all! 
 
