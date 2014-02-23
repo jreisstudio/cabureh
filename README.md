@@ -2,6 +2,7 @@
 A way to access the Arduino ports as in an api.
 
 ## How to use the Cabureh
+ * Edit the wifly_hq_cabureh_slave.ino  to use your network infos (network_ssid e network_password)
  * Copy the wifly_hq_cabureh_slave.ino to your arduino.
  * Put a led into pin 13 (pleased use a resistor to connect it to the ground!)
  * Run the code:
