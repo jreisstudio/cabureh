@@ -11,8 +11,8 @@ SoftwareSerial wifiSerial(4,5);
 char buf[80];
 WiFly wifly;
 
-const char network_ssid[] = "xxx";
-const char network_password[] = "xxx";
+const char network_ssid[] = "xxxx";
+const char network_password[] = "xxxx";
 
 void   serial_start();
 void join_network();
@@ -20,6 +20,7 @@ void server_start(char *server_name);
 void default_digital_header(char *pin, char *pin_level);
 void send_404();
 void send_pin_status(int pin);
+void send_analog_status(int pin);
 void on_pin(int pin);
 void off_pin(int pin);
 
@@ -109,7 +110,6 @@ void default_digital_header(char *pin, char *pin_level){
 }
 
 void send_pin_status(int pin){
-  
   wifly.flushRx();
   wifly.println(F("HTTP/1.1 200 OK"));
   wifly.println(F("Content-Type: application/json"));
@@ -131,10 +131,33 @@ void send_pin_status(int pin){
   }
   wifly.sendChunkln(F("}"));
   wifly.sendChunkln();
-
-
 }
 
+
+void send_analog_status(int pin){
+  wifly.flushRx();
+  wifly.println(F("HTTP/1.1 200 OK"));
+  wifly.println(F("Content-Type: application/json"));
+  wifly.println(F("Transfer-Encoding: chunked"));
+  wifly.println();    
+  wifly.sendChunkln(F("{"));
+  wifly.sendChunk(F("\"pin\": "));
+  String pin_str;
+  char pin_char[16];
+  pin_str= String(pin);
+  pin_str.toCharArray(pin_char, 16);
+  wifly.sendChunk(pin_char);        
+  wifly.sendChunkln(F(" , "));  
+  wifly.sendChunk(F("\"pin_value\": "));
+  int analog_value = analogRead(pin);
+  String analog_str;
+  char pin_analog[16];
+  analog_str= String(analog_value);
+  analog_str.toCharArray(pin_analog, 16);
+  wifly.sendChunkln(pin_analog); 
+  wifly.sendChunkln(F("}"));
+  wifly.sendChunkln();
+}
 
 void send_404(){
   wifly.flushRx();
@@ -322,6 +345,30 @@ void router(){
   } else if (strncmp_P(buf, PSTR("GET /digital/13"), 15) == 0){
     Serial.println("status pin 13");
     send_pin_status(13);  
+    
+ } else if (strncmp_P(buf, PSTR("GET /analogic/00"), 16) == 0){
+    Serial.println("status pin analogic 0");
+    send_analog_status(0);   
+    
+  } else if (strncmp_P(buf, PSTR("GET /analogic/01"), 16) == 0){
+    Serial.println("status pin analogic 01");
+    send_analog_status(1);    
+
+  } else if (strncmp_P(buf, PSTR("GET /analogic/02"), 16) == 0){
+    Serial.println("status pin analogic 02");
+    send_analog_status(2);    
+
+  } else if (strncmp_P(buf, PSTR("GET /analogic/03"), 16) == 0){
+    Serial.println("status pin analogic 03");
+    send_analog_status(3);    
+
+  } else if (strncmp_P(buf, PSTR("GET /analogic/04"), 16) == 0){
+    Serial.println("status pin analogic 04");
+    send_analog_status(4);    
+
+  } else if (strncmp_P(buf, PSTR("GET /analogic/05"), 16) == 0){
+    Serial.println("status pin analogic 05");
+    send_analog_status(5);    
     
   } else{
     send_404();
