@@ -25,6 +25,10 @@ By hour that's all!
 
 ## ChangeLog
 
+### v0.3(2014/02/24)
+ * To Create a way to send and get info from analogic pins.
+ * included an example to use analogic and digital pins.
+
 ###  v0.2 (2014/02/23)
  * To use the method get to get the pin's info
  * To use the method PUT to change the pins status
@@ -34,6 +38,5 @@ By hour that's all!
  * Added a class to test the Arduino connection.
  
 ## Backlog
- * To Create a way to send and get info from analogic pins.
  * To create a slave for arduino official  wifi shield 
  
